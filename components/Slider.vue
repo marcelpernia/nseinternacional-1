@@ -13,7 +13,7 @@
 	    		<div class="container">
 	    			<div class="slide-text-wrapper">
 				      <h2 class="title is-2">{{item.title}}</h2>
-				      <p class="is-size-4 pb-1" style="white-space: pre;">{{item.description}}</p>
+				      <p v-if="item.description" class="is-size-4 pb-1" style="white-space: pre;">{{item.description}}</p>
 				      <div class="buttons pt-5">
 				      	<a href="" class="button is-medium">Saber más</a>
 				      </div>
@@ -29,18 +29,68 @@
 	</client-only>
 </template>
 
-<style lang="scss">
-	.VueCarousel-pagination {
-		position: absolute;
-		bottom: 10px;
-		left: 0;
+<script>
+	import axios from 'axios';
+	export default {
+		data() {
+			return {
+				items: []
+			}
+		},
+		async mounted() {
+			try {
+				await axios.get('https://admin.nseinternacional.org/public/nseinternacional/items/slider')
+					.then(response => response.data.data.map(item => {
+						const {id, title, status, description, image} = item
+
+						axios.get(`https://admin.nseinternacional.org/public/nseinternacional/files/${image}`)
+							.then(response => {
+								const assetUrl = response.data.data.data.asset_url
+						
+								this.items.push({
+									id,
+									title,
+									status,
+									description,
+									assetUrl
+								})
+							})
+
+					}))
+			} catch (error) {
+				console.log(error)
+			}
+		},
+		methods: {
+			imageUrl(value) {
+				return `https://admin.nseinternacional.org${value}`;
+			}
+		},
+		filters: {
+			thumbnail(data) {
+				return `${data}?key=thumbnail`
+			},
+			slider(data) {
+				return `${data}?key=slider`
+			}
+		}
 	}
-	.VueCarousel-slide {
-		text-align: right;
-		position: relative;
-		h2, p {
-			color: #fff;
-			text-shadow: 0 2px 2px #000000;
+</script>
+
+<style lang="scss">
+	.VueCarousel {
+		&-pagination {
+			position: absolute;
+			bottom: 10px;
+			left: 0;
+		}
+		&-slide {
+			text-align: right;
+			position: relative;
+			h2, p {
+				color: #fff;
+				text-shadow: 0 2px 2px #000000;
+			}
 		}
 	}
 	.slide {
@@ -92,50 +142,3 @@
 		}
 	}
 </style>
-<script>
-	import axios from 'axios';
-	export default {
-		data() {
-			return {
-				items: []
-			}
-		},
-		async created() {
-			try {
-				await axios.get('https://admin.nseinternacional.org/public/nseinternacional/items/slider')
-					.then(response => response.data.data.map(item => {
-						const {id, title, status, description, image} = item
-
-						axios.get(`https://admin.nseinternacional.org/public/nseinternacional/files/${image}`)
-							.then(response => {
-								const assetUrl = response.data.data.data.asset_url
-						
-								this.items.push({
-									id,
-									title,
-									status,
-									description,
-									assetUrl
-								})
-							})
-
-					}))
-			} catch {
-				console.log(error)
-			}
-		},
-		methods: {
-			imageUrl(value) {
-				return `https://admin.nseinternacional.org${value}`;
-			}
-		},
-		filters: {
-			thumbnail(data) {
-				return `${data}?key=thumbnail`
-			},
-			slider(data) {
-				return `${data}?key=slider`
-			}
-		}
-	}
-</script>

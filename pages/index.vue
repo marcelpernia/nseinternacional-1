@@ -2,6 +2,8 @@
   <div>
     <Slider />
     <Intro></Intro>
+    <Middle></Middle>
+    <Podcasts></Podcasts>
     <div class="section section--feature">
       <div class="container">
         <div class="level">
