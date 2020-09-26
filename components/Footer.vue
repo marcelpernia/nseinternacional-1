@@ -21,7 +21,7 @@
 
 <style>
 	.footer {
-		background-color: #723D46;
+		background-color: #BD9B60;
 	}
 	.footer * {
 		color: white;

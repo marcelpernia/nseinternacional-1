@@ -1,9 +1,9 @@
 <template>
 	<div class="tile is-ancestor">
 	  <div class="tile is-6 bigger has-img">
-	    <img class="filter-1" src="images/p-molina.jpg" alt="">
+	    <img class="filter-1" :src="item.img1 | thumbnail('directus-large-contain')" alt="">
 	    <div>
-	    	<h4 class="title is-5 has-text-white">Conformamos un equipo internacional de misioneros laicos y de colaboradores voluntarios formados en la espiritualidad del Padre Rodrigo Molina</h4>
+	    	<h4 class="title is-5 has-text-white">{{item.text_2}}</h4>
 	    </div>
 	  </div>
 	  <div class="tile is-6 is-parent">
@@ -15,7 +15,7 @@
 				 		<p class="has-text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 				 	</div>
 				</div>
-				<div class="tile smaller color-3">
+				<div class="tile smaller color-2">
 				 	<div>
 				 		<icon-film></icon-film>
 				 		<h4 class="title is-4 has-text-white my-4">Cine</h4>
@@ -24,7 +24,7 @@
 				</div>
 	  	</div>
 	  	<div class="tile is-vertical is-parent">
-				<div class="tile smaller color-2">
+				<div class="tile smaller color-3">
 					<div>
 						<icon-tv></icon-tv>
 						<h4 class="title is-4 has-text-white my-4">Televisión</h4>
@@ -32,25 +32,72 @@
 					</div>
 				</div>
 				<div class="tile smaller has-img">
-				 	<img src="images/foto-nse-radio.jpg" alt="">
+				 	<img :src="item.img2 | thumbnail('medium')" alt="">
 				</div>
 	  	</div>
 	  </div>
 	</div>
 </template>
 
+<script>
+	import axios from 'axios';
+	export default {
+		data() {
+			return {
+				api: 'https://admin.nseinternacional.org/public/nseinternacional',
+				fields: [
+					'text_2',
+					'img_1',
+					'img_2'
+				],
+				item: '',
+			}
+		},
+		async created() {
+			try {
+				await axios.get(`${this.api}/items/inicio?single=1&fields=${this.fields}`)
+					.then(response => {
+						const {text_2, img_1, img_2} = response.data.data
+
+						axios.get(`${this.api}/files/${img_1},${img_2}`)
+							.then(response => {
+								const files = response.data.data
+								let img1 = files.find(item => item.id === img_1)
+								let img2 = files.find(item => item.id === img_2)
+								this.item = {
+									text_2, 
+									'img1': `https://admin.nseinternacional.org${img1.data.asset_url}`,
+									'img2': `https://admin.nseinternacional.org${img2.data.asset_url}`
+								}
+							})
+					})
+			} catch(error) {
+				console.log(error)
+			}
+		},
+		filters: {
+			thumbnail(data, key="directus-medium-contain") {
+				return `${data}?key=${key}`
+			}
+		}
+	}
+</script>
+
 <style lang="scss" scoped>
 	.tile {
 		margin: 0 !important;
 		&.color {
 			&-1 {
-				background-color: #003865;
+				background-color: #464646;
+				background-color: var(--darkblue);
 			}
 			&-2 {
-				background-color: #005EB8;
+				background-color: #282828;
+				background-color: var(--lightblue);
 			}
 			&-3 {
-				background-color: #BD9B60;
+				background-color: #464646;
+				background-color: var(--beige);
 			}
 		}
 	}

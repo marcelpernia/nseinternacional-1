@@ -7,15 +7,14 @@
 			:paginationPadding="5">
 	    <slide
 	    	v-for="item in items" 
-	    	:key="item.id" 
-	    	v-if="item.status === 'published'">
+	    	:key="item.id">
 	    	<div class="slide-wrapper">
 	    		<div class="container">
 	    			<div class="slide-text-wrapper">
 				      <h2 class="title is-2">{{item.title}}</h2>
 				      <p v-if="item.description" class="is-size-4 pb-1" style="white-space: pre;">{{item.description}}</p>
-				      <div class="buttons pt-5">
-				      	<a href="" class="button is-medium">Saber más</a>
+				      <div class="buttons pt-5" v-if="item.link">
+				      	<a :href="item.link" target="_blank" class="button is-medium">Saber más</a>
 				      </div>
 	    			</div>
 	    		</div>
@@ -34,16 +33,18 @@
 	export default {
 		data() {
 			return {
-				items: []
+				api: 'https://admin.nseinternacional.org/public/nseinternacional',
+				items: [],
+				limit: 5
 			}
 		},
-		async mounted() {
+		async created() {
 			try {
-				await axios.get('https://admin.nseinternacional.org/public/nseinternacional/items/slider')
+				await axios.get(`${this.api}/items/slider?status=published&limit=${this.limit}`)
 					.then(response => response.data.data.map(item => {
-						const {id, title, status, description, image} = item
+						const {id, title, status, description, image, link} = item
 
-						axios.get(`https://admin.nseinternacional.org/public/nseinternacional/files/${image}`)
+						axios.get(`${this.api}/files/${image}`)
 							.then(response => {
 								const assetUrl = response.data.data.data.asset_url
 						
@@ -52,7 +53,8 @@
 									title,
 									status,
 									description,
-									assetUrl
+									assetUrl,
+									link
 								})
 							})
 
@@ -77,7 +79,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.VueCarousel {
 		&-pagination {
 			position: absolute;
@@ -117,7 +119,7 @@
 			position: relative;
 			background-color: black;
 			min-height: 250px;
-			max-height: 450px;
+			max-height: 500px;
 			&:before {
 				content: '';
 				display: block;

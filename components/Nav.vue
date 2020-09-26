@@ -39,19 +39,16 @@
 
         </div>
 
-        <div class="navbar-item has-dropdown is-hoverable">
+        <div class="navbar-item">
           <a class="navbar-link">
             Tv
           </a>
         </div>
-        <div class="navbar-item has-dropdown is-hoverable">
+        <div class="navbar-item">
           <a class="navbar-link">
             Cine
           </a>
         </div>
-        <a class="navbar-item">
-          Eventos
-        </a>
         <a class="navbar-item">
           Contacto
         </a>
@@ -63,7 +60,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-link">
+            <a class="button is-danger">
               Donar
             </a>
           </div>
@@ -89,6 +86,9 @@ export default {
 </script>
 
 <style>
+  .navbar-brand {
+    min-height: 4.65rem;
+  }
 	.navbar {
 		border-bottom: solid 1px #e3e3e3 !important;
 	}
@@ -100,4 +100,7 @@ export default {
   .nabvar .button.is-primary {
     background-color: #723D46 !important;
   }
+  .navbar-item img {
+    max-height: 2.75rem;
+  } 
 </style>

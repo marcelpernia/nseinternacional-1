@@ -1,0 +1,19 @@
+/*variables de color*/
+:root {
+	--beige: #BD9B60;
+	--darkblue: #003865;
+	--lightblue: #005EB8;
+}
+
+a:active,
+a:focus,
+a:visited {
+	outline: none;
+}
+
+.button.is-danger {
+  background-color: #DA343C;
+  &:hover {
+    background-color: #C32F37 !important;
+  }
+}
