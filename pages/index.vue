@@ -21,9 +21,24 @@
             </div>
           </div>
         </div>
-        <Audiovisuals></Audiovisuals>
 
-        <div class="buttons is-centered pt-5">
+        <Audiovisuals 
+          section="destacado" 
+          :limit="3" 
+          grid="is-4-desktop">
+        </Audiovisuals>
+
+        <div class="section">          
+          <h2 class="has-text-centered title is-4 has-text-white">EL SANTO ROSARIO</h2>
+          
+          <Audiovisuals 
+            section="rosario" 
+            :limit="4" 
+            grid="is-3-desktop">
+          </Audiovisuals>    
+        </div>
+
+        <div class="buttons is-centered">
           <a href="" class="button is-white is-medium">Ver más</a>
         </div>
       </div>
@@ -42,6 +57,7 @@
     background-image: url('/images/estudio.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     box-shadow: inset 0 -2000px 0 rgba(0,0,0,.8);
   }
 </style>

@@ -1,22 +1,20 @@
 <template>
-	<a target="_blank" :href="link" class="column is-4-desktop is-half-tablet is-half-mobile">
-	  <div class="card post-item">
-	    <div class="card-image">
-	      <figure class="image is-5by3">
-	        <img :src="thumbnail" alt="Placeholder image">
-	      </figure>
+	<a target="_blank" :href="link" class="card">
+    <div class="card-image">
+      <figure class="image is-5by3">
+        <img loading="lazy" :src="thumbnail" alt="Placeholder image">
+      </figure>
+    </div>
+    <div class="card-content">
+    	<div class="media">
+	      <div class="media-left">
+	      	<figure class="image is-48x48" v-html="getIcon"></figure>
+	      </div>
+	      <div class="media-content">
+	       	<h3 class="title is-6 is-spaced mb-1">{{title}}</h3>
+	      </div>
 	    </div>
-	    <div class="card-content">
-	    	<div class="media">
-		      <div class="media-left">
-		      	<figure class="image is-48x48" v-html="getIcon"></figure>
-		      </div>
-		      <div class="media-content">
-		       	<h3 class="title is-6 is-spaced mb-1">{{title}}</h3>
-		      </div>
-		    </div>
-	    </div>
-	  </div>
+    </div>
 	</a>
 </template>
 

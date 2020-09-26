@@ -1,6 +1,8 @@
 <template>
 	<div class="columns is-mobile is-multiline">
     <Card
+    	class="column is-half-tablet is-half-mobile"
+    	:class="grid"
     	v-for="item in items"
     	:key="item.id"
     	:link="item.link"
@@ -14,23 +16,27 @@
 <script>
 	import axios from 'axios';
 	export default {
+		props: {
+			grid: String,
+			limit: {
+				type: Number,
+				default: 1
+			},
+			section: {
+				type: String,
+				required: true,
+				default: 'destacado'
+			}
+		},
 		data() {
 			return {
 				api: 'https://admin.nseinternacional.org/public/nseinternacional',
-				items: [],
-				limit: 3,
-				fields: [
-					'id',
-					'title',
-					'type',
-					'image',
-					'link'
-				]
+				items: []
 			}
 		},
 		async created() {
 			try {
-				await axios.get(`${this.api}/items/audiovisuales?status=published&fields=${this.fields}&limit=${this.limit}`)
+				await axios.get(`${this.api}/items/audiovisuales?status=published&limit=${this.limit}&filter[section]=${this.section}`)
 					.then(response => response.data.data.map(item => {
 						const {id, title, type, image, link} = item
 
@@ -60,6 +66,11 @@
 		filters: {
 			thumbnail(data, key="directus-medium-contain") {
 				return `${data}?key=${key}`
+			}
+		},
+		computed: {
+			itemsFiltrados() {
+				return this.items.filter(el => el.type === "radio")
 			}
 		}
 	}
