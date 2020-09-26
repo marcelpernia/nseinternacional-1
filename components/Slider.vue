@@ -1,42 +1,51 @@
 <template>
 	<client-only>
-		<carousel 
-			:perPage="1"
-			paginationActiveColor="rgba(255,255,255,.7)"
-			paginationColor="rgba(255,255,255,.15)"
-			:paginationPadding="5">
-	    <slide
-	    	v-for="item in items" 
-	    	:key="item.id">
-	    	<div class="slide-wrapper">
-	    		<div class="container">
-	    			<div class="slide-text-wrapper">
-				      <h2 class="title is-2">{{item.title}}</h2>
-				      <p v-if="item.description" class="is-size-4 pb-1" style="white-space: pre;">{{item.description}}</p>
-				      <div class="buttons pt-5" v-if="item.link">
-				      	<a :href="item.link" target="_blank" class="button is-medium">Saber más</a>
-				      </div>
-	    			</div>
-	    		</div>
-	    	</div>
-	    	<div class="slide-image">
-	    		<span class="slide-gradient"></span>
-	     		<img :src="imageUrl(item.assetUrl) | slider" alt="">
-	    	</div>
-	    </slide>
-	  </carousel>
+		<div class="is-relative placeholder-loading">
+			<loader v-if="loading"></loader>		
+			<carousel 
+				:perPage="1"
+				paginationActiveColor="rgba(255,255,255,.7)"
+				paginationColor="rgba(255,255,255,.15)"
+				:paginationPadding="5">
+		    <slide
+		    	v-for="item in items" 
+		    	:key="item.id">
+		    	<div class="slide-wrapper">
+		    		<div class="container">
+		    			<div class="slide-text-wrapper">
+					      <h2 class="title is-2">{{item.title}}</h2>
+					      <p v-if="item.description" class="is-size-4 pb-1" style="white-space: pre;">{{item.description}}</p>
+					      <div class="buttons pt-5" v-if="item.link">
+					      	<a :href="item.link" target="_blank" class="button is-medium">Saber más</a>
+					      </div>
+		    			</div>
+		    		</div>
+		    	</div>
+		    	<div class="slide-image">
+		    		<span class="slide-gradient"></span>
+		     		<img :src="imageUrl(item.assetUrl) | slider" alt="">
+		    	</div>
+		    </slide>
+		  </carousel>
+		</div>
 	</client-only>
 </template>
 
 <script>
 	import axios from 'axios';
+
 	export default {
+		name: 'Slider',
 		data() {
 			return {
+				loading: false,
 				api: 'https://admin.nseinternacional.org/public/nseinternacional',
 				items: [],
 				limit: 5
 			}
+		},
+		mounted() {
+			this.loading = true
 		},
 		async created() {
 			try {
@@ -57,6 +66,8 @@
 									link
 								})
 							})
+							.catch(error => console.log(error))
+							.finally(() => this.loading = false)
 
 					}))
 			} catch (error) {
@@ -81,6 +92,7 @@
 
 <style lang="scss" scoped>
 	.VueCarousel {
+		min-height: 250px;
 		&-pagination {
 			position: absolute;
 			bottom: 10px;

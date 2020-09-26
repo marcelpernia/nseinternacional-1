@@ -53,5 +53,10 @@ export default {
       }
     },
   },
-  target: 'static'
+  target: 'static',
+  loading: {
+    color: '#BD9B60',
+    height: '3px'
+  }
+  // loading: '~/components/LoadingBar.vue',
 }

@@ -27,6 +27,10 @@
 			}
 		},
 		mounted() {
+			this.$nextTick(() => {
+	      this.$nuxt.$loading.start()
+	    })
+
 			axios.get(`${this.api}/items/about_us?single=1`)
 				.then(response => {
 					const {content, image} = response.data.data
@@ -42,6 +46,7 @@
 						})
 				})
 				.catch(error => console.log(error))
+				.finally(() => this.$nuxt.$loading.finish())
 		},
 		filters: {
 			thumbnail(data, key="directus-medium-contain") {
