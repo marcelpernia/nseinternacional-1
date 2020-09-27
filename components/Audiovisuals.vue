@@ -3,7 +3,7 @@
     <Card
     	class="column is-half-tablet is-half-mobile"
     	:class="grid"
-    	v-for="item in items"
+    	v-for="item in itemsOrdenados"
     	:key="item.id"
     	:link="item.link"
       :icontype="item.icontype" 
@@ -38,7 +38,7 @@
 			try {
 				await axios.get(`${this.api}/items/audiovisuales?status=published&limit=${this.limit}&filter[section]=${this.section}`)
 					.then(response => response.data.data.map(item => {
-						const {id, title, type, image, link} = item
+						const {id, title, type, image, link, sort} = item
 
 						axios.get(`${this.api}/files/${image}`)
 							.then(response => {
@@ -49,6 +49,7 @@
 									title,
 									icontype: type,
 									link,
+									sort,
 									img: assetUrl
 								})
 							})
@@ -69,8 +70,8 @@
 			}
 		},
 		computed: {
-			itemsFiltrados() {
-				return this.items.filter(el => el.type === "radio")
+			itemsOrdenados() {
+				return this.items.sort((a, b) => a.sort - b.sort)
 			}
 		}
 	}

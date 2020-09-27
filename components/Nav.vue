@@ -85,22 +85,16 @@ export default {
 }
 </script>
 
-<style>
-  .navbar-brand {
-    min-height: 4.65rem;
-  }
+<style lang="scss" scoped>
 	.navbar {
 		border-bottom: solid 1px #e3e3e3 !important;
+    @media (min-width: 1024px) {  
+      &-brand {
+        min-height: 4.65rem;
+      }
+      &-item img {
+        max-height: 2.75rem;
+      } 
+    }
 	}
-	.select:not(.is-multiple):not(.is-loading)::after, .navbar-link:not(.is-arrowless)::after {
-		border: 2px solid #8C8E8E;
-		border-right: 0;
-		border-top: 0;
-	}
-  .nabvar .button.is-primary {
-    background-color: #723D46 !important;
-  }
-  .navbar-item img {
-    max-height: 2.75rem;
-  } 
 </style>

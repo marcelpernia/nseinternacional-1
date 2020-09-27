@@ -13,7 +13,7 @@
 		    	<div class="slide-wrapper">
 		    		<div class="container">
 		    			<div class="slide-text-wrapper">
-					      <h2 class="title is-2">{{item.title}}</h2>
+					      <h2 class="title is-size-2">{{item.title}}</h2>
 					      <p v-if="item.description" class="is-size-4 pb-1" style="white-space: pre;">{{item.description}}</p>
 					      <div class="buttons pt-5" v-if="item.link">
 					      	<a :href="item.link" target="_blank" class="button is-medium">Saber más</a>
@@ -105,6 +105,15 @@
 				color: #fff;
 				text-shadow: 0 2px 2px #000000;
 			}
+			@media (max-width: 768px) {
+				h2 {
+					font-size: 18px !important;
+					margin-bottom: 10px !important;
+				}
+				p {
+					font-size: 14px !important;
+				}
+			}
 		}
 	}
 	.slide {
@@ -152,6 +161,9 @@
 			max-width: 600px;
 			p {
 				font-weight: 500;
+			}
+			@media (max-width: 1023px) {
+				padding: 0 10px;
 			}
 		}
 	}

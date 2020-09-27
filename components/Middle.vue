@@ -126,13 +126,14 @@
 	}
 
 	.bigger {
+		display: flex;
 		align-items: flex-end;
 		padding: 50px 20% 50px 50px;
 		min-height: 500px;
 		.title {
 			font-weight: 500;
 			line-height: 28px;
-		}
+		}		
 	}
 	.smaller {
 		box-shadow: none;
@@ -143,9 +144,37 @@
 			width: 64px;
 			opacity: 0.3;
 		}
-		@media (max-width: 765px) {
+
+	}
+	@media (max-width: 980px) {
+		.smaller {
+			padding: 20px;
 			.title {
-				margin: 10px 0 !important;
+				margin: 10px 0;
+				font-size: 1.2rem;
+			}
+			p {
+				font-size: 12px;
+			}
+		}
+		.bigger {
+			padding: 20px;
+			.title {
+				font-size: 16px;
+			}
+		}
+	}
+	@media (max-width: 768px) {
+		.bigger {
+			min-height: 350px;
+		}
+		.smaller {
+			padding: 10px;
+			.title {
+				margin: 5px 0 !important;
+			}
+			svg {
+				width: 30px;
 			}
 		}
 	}

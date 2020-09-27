@@ -52,5 +52,9 @@
 	.title--intro {
 		font-weight: 500;
 		line-height: 34px;
+		@media (max-width: 1024px) {
+			font-size: 0.9rem;
+			line-height: 25px;
+		}
 	}
 </style>

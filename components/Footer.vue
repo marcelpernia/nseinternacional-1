@@ -24,7 +24,7 @@
 		background-color: #BD9B60;
 	}
 	.footer * {
-		color: white;
+		color: #121212;
 	}
 	.icons .icon + .icon {
 		margin-left: 10px;

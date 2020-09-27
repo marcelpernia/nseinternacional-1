@@ -1,7 +1,7 @@
 <template>
 	<div class="section">
 		<div class="container">
-			<div class="level">
+			<div class="level is-mobile">
 		    <div class="level-left">
 		      <h2 class="has-text-centered title is-4">TE RECOMENDAMOS</h2>
 		    </div>

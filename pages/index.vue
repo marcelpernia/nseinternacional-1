@@ -11,7 +11,7 @@
             <h2 class="has-text-centered title is-4 has-text-white">LO MÁS DESTACADO</h2>
           </div>
           <div class="level-right">
-            <div class="buttons">
+            <div class="buttons is-centered">
               <a href="" class="button is-danger">
                 <span>Radio en Vivo</span>
               </a>
@@ -25,7 +25,7 @@
         <Audiovisuals 
           section="destacado" 
           :limit="3" 
-          grid="is-4-desktop">
+          grid="is-4-desktop is-12-mobile">
         </Audiovisuals>
 
         <div class="section">          
@@ -34,12 +34,22 @@
           <Audiovisuals 
             section="rosario" 
             :limit="4" 
-            grid="is-3-desktop">
+            grid="is-3-desktop is-12-mobile">
           </Audiovisuals>    
         </div>
 
+        <div class="section">          
+          <h2 class="has-text-centered title is-4 has-text-white">NOVENAS</h2>
+          
+          <Audiovisuals 
+            section="novenas" 
+            :limit="3" 
+            grid="is-4-desktop is-12-mobile">
+          </Audiovisuals>  
+        </div>
+
         <div class="buttons is-centered">
-          <a href="" class="button is-white is-medium">Ver más</a>
+          <a href="" class="button is-white is-medium">Ver todo</a>
         </div>
       </div>
     </div>
@@ -58,6 +68,6 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    box-shadow: inset 0 -2000px 0 rgba(0,0,0,.8);
+    box-shadow: inset 0 -5000px 0 rgba(0,0,0,.8);
   }
 </style>

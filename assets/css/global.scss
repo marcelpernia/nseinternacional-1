@@ -18,3 +18,15 @@ a:visited {
   }
 }
 
+@media (max-width: 768px) {
+	.button {
+		font-size: 1rem !important;
+	}
+	.section {
+    padding: 1.5rem 1rem;
+
+    .title.is-4 {
+    	font-size: 14px;
+    }
+	}
+}
