@@ -10,7 +10,7 @@
           <div class="level-left">
             <h2 class="has-text-centered title is-4 has-text-white">LO MÁS DESTACADO</h2>
           </div>
-          <div class="level-right">
+          <div class="level-right is-hidden-mobile">
             <div class="buttons is-centered">
               <a href="" class="button is-danger">
                 <span>Radio en Vivo</span>
@@ -58,7 +58,7 @@
 
 <script>
   export default {
-
+    
   }
 </script>
 

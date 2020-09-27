@@ -1,7 +1,7 @@
 <template>
 	<a target="_blank" :href="link" class="card">
     <div class="card-image">
-      <figure class="image is-5by3">
+      <figure class="image is-16by9">
         <img loading="lazy" :src="thumbnail" alt="Placeholder image">
       </figure>
     </div>
@@ -53,24 +53,25 @@
 
 <style lang="scss" scoped>
 	.card {
-		background-color: rgba(19, 19, 19, .7);
-		transition: all 200ms linear;
-		&:hover {
-			background-color: rgba(19, 19, 19, 1);
+		background-color: transparent;
+		&:hover .card-content {
+			/*background-color: rgba(19, 19, 19, 1);*/
 		}
 		* {
 			color: #fff;
 		}
 		&-image {
-			background-color: #313232;
+			background-color: #000000;
 			img {
-				object-fit: contain;
+				object-fit: cover;
 			}
 		}
 		&:hover .card-content .image {
 			background-color: var(--beige);
 		}
 		&-content {
+			background-color: rgba(19, 19, 19, .7);
+			transition: all 200ms linear;
 			position: relative;
 			padding: 20px;
 			.image {
@@ -99,6 +100,9 @@
     .card {
     	&-content {
     		padding: 10px;
+    	}
+    	.title {
+    		font-size: 14px;
     	}
     }
   }
