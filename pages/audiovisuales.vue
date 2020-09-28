@@ -3,7 +3,7 @@
 		<div class="container">	
 			<div class="has-text-centered">
 				<h2 class="title is-4">Audiovisuales</h2>
-				<h3 class="subtitle is-capitalized">{{type}}</h3>
+				<h3 class="subtitle is-capitalized pb-2">{{type}}</h3>
 			</div>
 			<div class="level">
 				<div class="level-left">
@@ -12,9 +12,9 @@
 					</div>
 					<div class="level-item">
 						<form action="" class="form">
-							<div class="field has-addons">
-							  <div class="control is-fullwidth">
-							    <span class="select is-expanded">
+							<div class="field has-addons is-expanded">
+							  <div class="control is-expanded">
+							    <span class="select is-fullwidth">
 							      <select name="type" v-model="typeSelect">
 							      	<option value="">Todo</option>
 							        <option value="cine">Cine</option>
@@ -24,7 +24,7 @@
 							    </span>
 							  </div>
 							  <div class="control">
-							    <button class="button is-primary" :class="{'is-loading': loading}">Buscar</button>
+							    <button class="button is-link" :class="{'is-loading': loading}">Buscar</button>
 							  </div>
 							</div>
 						</form>
@@ -61,6 +61,9 @@
 	}
 	.subtitle {
 		min-height: 25px;
+	}
+	.form {
+		width: 100%;
 	}
 </style>
 <script>
