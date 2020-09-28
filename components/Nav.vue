@@ -22,6 +22,8 @@
 
         <a class="navbar-item" href="/audiovisuales?type=cine">Cine</a>
 
+        <a class="navbar-item" href="/contacto">Contacto</a>
+
         <nuxt-link to="/audiovisuales" class="navbar-item">
           <span class="icon"><i class="fa fa-search"></i></span>
         </nuxt-link>
