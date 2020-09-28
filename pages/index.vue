@@ -49,7 +49,7 @@
         </div>
 
         <div class="buttons is-centered">
-          <a href="" class="button is-white is-medium">Ver todo</a>
+          <nuxt-link to="/audiovisuales" class="button is-white is-medium">Ver todo</nuxt-link>
         </div>
       </div>
     </div>

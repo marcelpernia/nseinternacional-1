@@ -1,18 +1,7 @@
 <template>
 	<div class="section">
 		<div class="container">
-			<div class="level is-mobile">
-		    <div class="level-left">
-		      <h2 class="has-text-centered title is-4">TE RECOMENDAMOS</h2>
-		    </div>
-		    <div class="level-right">
-		      <div class="buttons">
-		        <a href="" class="button is-link">
-		          <span>Ver más</span>
-		        </a>
-		      </div>
-		    </div>
-		  </div>
+		  <h2 class="has-text-centered title is-4">TE RECOMENDAMOS</h2>
 		  <div class="columns is-gapless is-multiline is-mobile">
 		  	<div class="column is-3-desktop is-6-mobile" v-for="item in items" :key="item.id">
 		  		<a class="item" target="_blank" :href="item.url">

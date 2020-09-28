@@ -18,6 +18,12 @@ a:visited {
   }
 }
 
+.input::-moz-placeholder, 
+.textarea::-moz-placeholder, 
+.select select::-moz-placeholder {
+  color: #A1A3A3;
+}
+
 @media (max-width: 768px) {
 	.button {
 		font-size: 1rem !important;

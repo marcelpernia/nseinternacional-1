@@ -2,7 +2,7 @@
 	<a target="_blank" :href="link" class="card">
     <div class="card-image">
       <figure class="image is-16by9">
-        <img loading="lazy" :src="thumbnail" alt="Placeholder image">
+        <img loading="lazy" :src="thumbnail" alt="img">
       </figure>
     </div>
     <div class="card-content">
@@ -54,6 +54,7 @@
 <style lang="scss" scoped>
 	.card {
 		background-color: transparent;
+		box-shadow: none;
 		&:hover .card-content {
 			/*background-color: rgba(19, 19, 19, 1);*/
 		}

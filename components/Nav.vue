@@ -12,49 +12,19 @@
 
     <div class="navbar-menu" :class="{'is-active': isActive}">
       <div class="navbar-start">
-      	<router-link class="navbar-item" to="/">Inicio</router-link>
+      	<nuxt-link class="navbar-item" to="/">Inicio</nuxt-link>
 
-        <router-link class="navbar-item" to="/quienes-somos">Quiénes somos</router-link>
+        <nuxt-link class="navbar-item" to="/quienes-somos">Quiénes somos</nuxt-link>
 
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            Radio
-          </a>
+        <a class="navbar-item" href="/audiovisuales?type=radio">Radio</a>
 
-     <!--      <div class="navbar-dropdown">
-            <a class="navbar-item has-dropdown is-hoverable">
-              About
-            </a>
-            <a class="navbar-item">
-              Jobs
-            </a>
-            <a class="navbar-item">
-              Contact
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              Report an issue
-            </a>
-          </div> -->
+        <a class="navbar-item" href="/audiovisuales?type=tv">Tv</a>
 
-        </div>
+        <a class="navbar-item" href="/audiovisuales?type=cine">Cine</a>
 
-        <div class="navbar-item">
-          <a class="navbar-link">
-            Tv
-          </a>
-        </div>
-        <div class="navbar-item">
-          <a class="navbar-link">
-            Cine
-          </a>
-        </div>
-        <a class="navbar-item">
-          Contacto
-        </a>
-        <a class="navbar-item">
+        <nuxt-link to="/audiovisuales" class="navbar-item">
           <span class="icon"><i class="fa fa-search"></i></span>
-        </a>
+        </nuxt-link>
       </div>
 
       <div class="navbar-end">
