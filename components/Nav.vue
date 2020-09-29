@@ -14,7 +14,7 @@
       <div class="navbar-start">
       	<nuxt-link class="navbar-item" to="/">Inicio</nuxt-link>
 
-        <nuxt-link class="navbar-item" to="/quienes-somos">Quiénes somos</nuxt-link>
+        <nuxt-link class="navbar-item" to="/quienes-somos" no-prefetch>Quiénes somos</nuxt-link>
 
         <a class="navbar-item" href="/audiovisuales?type=radio">Radio</a>
 
@@ -22,9 +22,9 @@
 
         <a class="navbar-item" href="/audiovisuales?type=cine">Cine</a>
 
-        <a class="navbar-item" href="/contacto">Contacto</a>
+        <nuxt-link class="navbar-item" to="/contacto">Contacto</nuxt-link>
 
-        <nuxt-link to="/audiovisuales" class="navbar-item">
+        <nuxt-link @click="toggleMenu" to="/audiovisuales" class="navbar-item">
           <span class="icon"><i class="fa fa-search"></i></span>
         </nuxt-link>
       </div>
@@ -52,21 +52,32 @@ export default {
   methods: {
     toggleMenu() {
       this.isActive = !this.isActive
+    },
+    mensaje() {
+      return alert('alerta');
     }
-  }
+  },
+  watch:{
+    $route (to, from){
+      this.isActive = false
+    }
+  } 
 }
 </script>
 
 <style lang="scss" scoped>
 	.navbar {
 		border-bottom: solid 1px #e3e3e3 !important;
-    @media (min-width: 1024px) {  
-      &-brand {
-        min-height: 4.65rem;
+    &-brand {
+      min-height: inherit;
+      img {
+        max-height: inherit !important;
+        width: 160px;
+
+        @media (max-width: 1023px) {
+          width: 120px;
+        }
       }
-      &-item img {
-        max-height: 2.75rem;
-      } 
     }
 	}
 </style>

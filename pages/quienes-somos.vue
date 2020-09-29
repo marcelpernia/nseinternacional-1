@@ -22,6 +22,7 @@
 	export default {
 		data() {
 			return {
+				isActive: false,
 				api: 'https://admin.nseinternacional.org/public/nseinternacional',
 				post: ''
 			}

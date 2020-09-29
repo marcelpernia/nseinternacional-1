@@ -13,8 +13,8 @@
 		    	<div class="slide-wrapper">
 		    		<div class="container">
 		    			<div class="slide-text-wrapper">
-					      <h2 class="title is-size-2">{{item.title}}</h2>
-					      <p v-if="item.description" class="is-size-4 pb-1" style="white-space: pre;">{{item.description}}</p>
+					      <h2 class="title is-size-2 has-text-white">{{item.title}}</h2>
+					      <p v-if="item.description" class="is-size-4 pb-1 has-text-white" style="white-space: pre;">{{item.description}}</p>
 					      <div class="buttons pt-5" v-if="item.link">
 					      	<a :href="item.link" target="_blank" class="button is-medium">Saber más</a>
 					      </div>
@@ -90,7 +90,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.VueCarousel {
 		min-height: 250px;
 		&-pagination {
@@ -102,7 +102,6 @@
 			text-align: right;
 			position: relative;
 			h2, p {
-				color: #fff;
 				text-shadow: 0 2px 2px #000000;
 			}
 			@media (max-width: 768px) {

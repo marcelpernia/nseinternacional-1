@@ -7,7 +7,7 @@
 					<nuxt-link to="quienes-somos" class="button is-link is-medium">Saber más</nuxt-link>
 				</div>
 				<div class="column is-half pl-0">
-					<figure class="image is-16by9" v-if="item.url_video" v-html="item.url_video"></figure>
+					<figure class="image is-16by9 image--intro" v-if="item.url_video" v-html="item.url_video"></figure>
 				</div>
 			</div>
 		</div>
@@ -39,8 +39,8 @@
 	}
 </script>
 
-<style lang="scss" scoped>
-	/deep/ .image iframe {
+<style>
+	.image--intro iframe {
 		width: 100%;
 		height: 100%;
 		bottom: 0;
@@ -52,7 +52,9 @@
 	.title--intro {
 		font-weight: 500;
 		line-height: 34px;
-		@media (max-width: 1024px) {
+	}
+	@media (max-width: 1024px) {
+		.title--intro {
 			font-size: 0.9rem;
 			line-height: 25px;
 		}
