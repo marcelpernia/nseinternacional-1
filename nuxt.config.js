@@ -31,6 +31,7 @@ export default {
   ],
   purgeCSS: {
    // your settings here
+    // whitelist: []
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)

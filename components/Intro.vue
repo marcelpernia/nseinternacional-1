@@ -7,7 +7,9 @@
 					<nuxt-link to="quienes-somos" class="button is-link is-medium">Saber más</nuxt-link>
 				</div>
 				<div class="column is-half pl-0">
-					<figure class="image is-16by9 image--intro" v-if="item.url_video" v-html="item.url_video"></figure>
+					<figure class="image is-16by9">
+						<iframe class="has-ratio" width="560" height="315" src="https://www.youtube.com/embed/weLYlkLXXHM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</figure>
 				</div>
 			</div>
 		</div>
@@ -26,6 +28,7 @@
 					'url_video'
 				],
 				item: '',
+				test: 'uno'
 			}
 		},
 		async created() {
@@ -39,22 +42,17 @@
 	}
 </script>
 
-<style>
-	.image--intro iframe {
-		width: 100%;
-		height: 100%;
-		bottom: 0;
-		left: 0;
-		position: absolute;
-		right: 0;
-		top: 0;
+<style lang="scss" scoped>
+	.image {
+		object-fit: cover;
+		iframe {
+			width: 100%;
+		}
 	}
-	.title--intro {
+	.title {
 		font-weight: 500;
 		line-height: 34px;
-	}
-	@media (max-width: 1024px) {
-		.title--intro {
+		@media (max-width: 1024px) {
 			font-size: 0.9rem;
 			line-height: 25px;
 		}

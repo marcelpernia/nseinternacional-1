@@ -94,26 +94,17 @@
 	.VueCarousel {
 		min-height: 250px;
 		&-pagination {
-			position: absolute;
-			bottom: 10px;
-			left: 0;
 		}
 		&-slide {
 			text-align: right;
 			position: relative;
-			h2, p {
-				text-shadow: 0 2px 2px #000000;
-			}
-			@media (max-width: 768px) {
-				h2 {
-					font-size: 18px !important;
-					margin-bottom: 10px !important;
-				}
-				p {
-					font-size: 14px !important;
-				}
-			}
+			
 		}
+	}
+	.VueCarousel-pagination {
+		position: absolute;
+		bottom: 10px;
+		left: 0;
 	}
 	.slide {
 		&-gradient {
@@ -158,11 +149,23 @@
 		}
 		&-text-wrapper {
 			max-width: 600px;
+			h2, p {
+				text-shadow: 0 2px 2px #000000;
+			}
 			p {
 				font-weight: 500;
 			}
 			@media (max-width: 1023px) {
 				padding: 0 10px;
+			}
+			@media (max-width: 768px) {
+				h2 {
+					font-size: 18px !important;
+					margin-bottom: 10px !important;
+				}
+				p {
+					font-size: 14px !important;
+				}
 			}
 		}
 	}
