@@ -8,29 +8,29 @@
 	  </div>
 	  <div class="tile is-6 is-parent">
 	  	<div class="tile is-vertical is-parent">
-				<div class="tile smaller color-1">
+				<a href="/audiovisuales?type=radio" class="tile smaller color-1">
 				 	<div>
 				 		<icon-radio></icon-radio>
 				 		<h4 class="title is-4 has-text-white my-4">Radio</h4>
 				 		<p class="has-text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 				 	</div>
-				</div>
-				<div class="tile smaller color-2">
+				</a>
+				<a href="/audiovisuales?type=cine" class="tile smaller color-2">
 				 	<div>
 				 		<icon-film></icon-film>
 				 		<h4 class="title is-4 has-text-white my-4">Cine</h4>
 				 		<p class="has-text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 				 	</div>
-				</div>
+				</a>
 	  	</div>
 	  	<div class="tile is-vertical is-parent">
-				<div class="tile smaller color-3">
+				<a href="/audiovisuales?type=tv" class="tile smaller color-3">
 					<div>
 						<icon-tv></icon-tv>
 						<h4 class="title is-4 has-text-white my-4">Televisión</h4>
 						<p class="has-text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 					</div>
-				</div>
+				</a>
 				<div class="tile smaller has-img">
 				 	<img :src="item.img2 | thumbnail('medium')" alt="">
 				</div>
@@ -143,8 +143,11 @@
 			color: white;
 			width: 64px;
 			opacity: 0.3;
+			transition: all 200ms linear;
 		}
-
+		&:hover svg {
+			opacity: .6;
+		}
 	}
 	@media (max-width: 980px) {
 		.smaller {

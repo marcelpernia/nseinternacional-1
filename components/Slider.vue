@@ -4,7 +4,11 @@
 			<loader v-if="loading"></loader>		
 			<carousel 
 				class="v-carousel"
+				:autoplay="true"
+				:autoplayTimeout="4000"
+				:paginationEnabled="false"
 				:perPage="1"
+				:loop="true"
 				paginationActiveColor="rgba(255,255,255,.7)"
 				paginationColor="rgba(255,255,255,.15)"
 				:paginationPadding="5">
