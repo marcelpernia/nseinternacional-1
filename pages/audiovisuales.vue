@@ -8,7 +8,7 @@
 			<div class="level">
 				<div class="level-left">
 					<div class="level-item">
-						<input class="input" type="text" placeholder="Buscar por título" v-model="title">
+						<input class="input" type="text" placeholder="Escribe una palabra clave" v-model="title">
 					</div>
 					<div class="level-item">
 						<form action="" class="form">
