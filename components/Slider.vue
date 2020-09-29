@@ -100,11 +100,6 @@
 		text-align: right;
 		position: relative;
 	}
-	.v-carousel .VueCarousel-pagination {
-		position: absolute;
-		bottom: 10px;
-		left: 0;
-	}
 	.slide {
 		&-gradient {
 			position: absolute;

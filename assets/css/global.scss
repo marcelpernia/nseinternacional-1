@@ -24,6 +24,12 @@ a:visited {
   color: #A1A3A3;
 }
 
+.v-carousel .VueCarousel-pagination {
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+}
+
 @media (max-width: 768px) {
 	.button {
 		font-size: 1rem !important;
