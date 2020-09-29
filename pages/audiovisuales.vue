@@ -2,8 +2,7 @@
 	<div class="section">
 		<div class="container">	
 			<div class="has-text-centered">
-				<h2 class="title is-4">Audiovisuales</h2>
-				<h3 class="subtitle is-capitalized pb-2">{{type}}</h3>
+				<h2 class="title is-4 is-capitalized pb-2" v-if="type != ''">{{type}}</h2>
 			</div>
 			<div class="level">
 				<div class="level-left">

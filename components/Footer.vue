@@ -9,8 +9,8 @@
 				</div>
 				<div class="column is-narrow">
 					<div class="icons">
-						<a target="_blank" href="https://es-la.facebook.com/nseradio/" class="icon"><i class="fab fa-lg fa-facebook-f"></i></a>
-						<a target="_blank" href="https://www.youtube.com/user/nsetvradio" class="icon"><i class="fab fa-lg fa-youtube"></i></a>
+						<a target="_blank" href="https://es-la.facebook.com/nseradio/" class="icon"><i class="fab fa-lg fa-facebook-square"></i></a>
+						<a target="_blank" href="https://www.youtube.com/user/nsetvradio" class="icon"><i class="fab fa-lg fa-youtube-square"></i></a>
 					</div>
 				</div>
 			</div>

@@ -1,12 +1,12 @@
 <template>
-	<div class="section has-background-light">
+	<div class="section">
 		<div class="container">
-			<h2 class="title is-4 has-text-centered">Contácto</h2>
+			<h2 class="title is-4 has-text-centered">Contacto</h2>
 
 			<div class="columns is-centered">
 				<div class="column is-half">
 					<div class="box">
-						<form action="" class="form">
+						<form class="form">
 							<div class="field">
 								<input type="text" class="input is-fullwidth" placeholder="Nombre" required>	
 							</div>
@@ -33,6 +33,7 @@
 <style lang="scss" scoped>
 	.section {
 		height: 100%;
-		background-color: #f8f8f8 !important;
+		/*background-color: #f8f8f8 !important;*/
+		/*box-shadow: inset 0 3000px 0 #f8f8f8;*/
 	}
 </style>

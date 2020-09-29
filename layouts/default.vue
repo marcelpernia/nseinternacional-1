@@ -19,7 +19,8 @@
     height: 100%;
   }
   main {
-    min-height: calc(100% - 225px);
+    min-height: calc(100% - 236px);
+    overflow-x: hidden;
   }  
 
   #container,
