@@ -3,11 +3,13 @@
 		<div class="is-relative placeholder-loading">
 			<loader v-if="loading"></loader>		
 			<carousel 
+				class="v-carousel"
 				:perPage="1"
 				paginationActiveColor="rgba(255,255,255,.7)"
 				paginationColor="rgba(255,255,255,.15)"
 				:paginationPadding="5">
 		    <slide
+		    	class="v-slide"
 		    	v-for="item in items" 
 		    	:key="item.id">
 		    	<div class="slide-wrapper">
@@ -91,17 +93,14 @@
 </script>
 
 <style lang="scss">
-	.VueCarousel {
+	.v-carousel {
 		min-height: 250px;
-		&-pagination {
-		}
-		&-slide {
-			text-align: right;
-			position: relative;
-			
-		}
 	}
-	.VueCarousel-pagination {
+	.v-slide {
+		text-align: right;
+		position: relative;
+	}
+	.v-carousel .VueCarousel-pagination {
 		position: absolute;
 		bottom: 10px;
 		left: 0;
