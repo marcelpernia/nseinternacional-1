@@ -130,10 +130,25 @@
 		align-items: flex-end;
 		padding: 50px 20% 50px 50px;
 		min-height: 500px;
+		> div {
+			z-index: 2;
+		}
 		.title {
 			font-weight: 500;
 			line-height: 28px;
+			text-shadow: 2px 2px 2px #000;
 		}		
+	/*	&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: 500px;
+			box-shadow: inset 0 -300px 10px rgba(0,0,0,.6);
+			z-index: 1;
+		}*/
 	}
 	.smaller {
 		box-shadow: none;
@@ -164,6 +179,7 @@
 			padding: 20px;
 			.title {
 				font-size: 16px;
+				line-height: 21px;
 			}
 		}
 	}
