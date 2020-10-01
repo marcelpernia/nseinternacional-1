@@ -2,7 +2,7 @@
 	<div class="section">
 		<div class="container">	
 			<div class="has-text-centered">
-				<h2 class="title is-4 is-capitalized pb-2" v-if="type != ''">{{type}}</h2>
+				<h2 class="title is-4 is-capitalized pb-2">{{$route.params.type}}</h2>
 			</div>
 			<div class="level">
 				<div class="level-left">
@@ -75,33 +75,38 @@
 				items: [],
 				limit: 30,
 				title: '',
-				type: this.$route.params.type,
 				typeSelect: this.$route.query.type == undefined ? '' : this.$route.query.type
 			}
 		},
-		mounted(){
-			this.loading = true;
-			axios.get(`${this.api}/items/audiovisuales?status=published&limit=${this.limit}${this.type != undefined && `&filter[type]=${this.type}`}`)
-				.then(response => response.data.data.map(item => {
-					const {id, title, type, image, link, sort} = item
+		created(){
+			this.getPosts()
+		},
+		methods: {
+			getPosts() {
+				this.items = []
+				this.loading = true;
+				axios.get(`${this.api}/items/audiovisuales?status=published&limit=${this.limit}${this.$route.params.type != undefined && `&filter[type]=${this.$route.params.type}`}`)
+					.then(response => response.data.data.map(item => {
+						const {id, title, type, image, link, sort} = item
 
-					axios.get(`${this.api}/files/${image}`)
-						.then(response => {
-							const assetUrl = response.data.data.data.asset_url
-					
-							this.items.push({
-								id,
-								title,
-								icontype: type,
-								link,
-								sort,
-								img: `https://admin.nseinternacional.org${assetUrl}`
+						axios.get(`${this.api}/files/${image}`)
+							.then(response => {
+								const assetUrl = response.data.data.data.asset_url
+						
+								this.items.push({
+									id,
+									title,
+									icontype: type,
+									link,
+									sort,
+									img: `https://admin.nseinternacional.org${assetUrl}`
+								})
 							})
-						})
-						.finally(() => this.loading = false)
-				}))
-				.catch(error => console.log(error))
-				.finally(() => this.loading = false)
+							.finally(() => this.loading = false)
+					}))
+					.catch(error => console.log(error))
+					.finally(() => this.loading = false)
+			}
 		},
 		filters: {
 			thumbnail(data, key="directus-medium-contain") {
@@ -115,6 +120,11 @@
 			posts() {
         return this.ordered.filter((item) => item.title.toLowerCase().includes(this.title.toLowerCase()));
       }
-		}
+		},
+		watch:{
+	    $route (to, from){
+	      this.getPosts()
+	    }
+	  }
 	}
 </script>

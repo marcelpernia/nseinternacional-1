@@ -13,17 +13,11 @@
     <div class="navbar-menu" :class="{'is-active': isActive}">
       <div class="navbar-start">
       	<nuxt-link class="navbar-item" to="/">Inicio</nuxt-link>
-
-        <nuxt-link class="navbar-item" to="/quienes-somos" no-prefetch>Quiénes somos</nuxt-link>
-
-        <a class="navbar-item" href="/audiovisuales?type=radio">Radio</a>
-
-        <a class="navbar-item" href="/audiovisuales?type=tv">Tv</a>
-
-        <a class="navbar-item" href="/audiovisuales?type=cine">Cine</a>
-
+        <nuxt-link class="navbar-item" to="/quienes-somos">Quiénes somos</nuxt-link>
+        <nuxt-link class="navbar-item" to="/audiovisuales/radio">Radio</nuxt-link>
+        <nuxt-link class="navbar-item" to="/audiovisuales/tv">Tv</nuxt-link>
+        <nuxt-link class="navbar-item" to="/audiovisuales/cine">Cine</nuxt-link>
         <nuxt-link class="navbar-item" to="/contacto">Contacto</nuxt-link>
-
         <nuxt-link @click="toggleMenu" to="/audiovisuales" class="navbar-item">
           <span class="icon"><i class="fa fa-search"></i></span>
         </nuxt-link>
