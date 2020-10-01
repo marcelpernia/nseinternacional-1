@@ -75,13 +75,13 @@
 				items: [],
 				limit: 30,
 				title: '',
-				type: this.$route.query.type,
+				type: this.$route.params.type,
 				typeSelect: this.$route.query.type == undefined ? '' : this.$route.query.type
 			}
 		},
 		mounted(){
 			this.loading = true;
-			axios.get(`${this.api}/items/audiovisuales?status=published&limit=${this.limit}${this.type != undefined && this.type != '' ? `&filter[type]=${this.type}` : null}`)
+			axios.get(`${this.api}/items/audiovisuales?status=published&limit=${this.limit}${this.type != undefined && `&filter[type]=${this.type}`}`)
 				.then(response => response.data.data.map(item => {
 					const {id, title, type, image, link, sort} = item
 
