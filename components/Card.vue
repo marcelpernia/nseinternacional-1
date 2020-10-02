@@ -2,7 +2,7 @@
 	<a target="_blank" :href="link" class="card">
     <div class="card-image">
       <figure class="image is-16by9">
-        <img loading="lazy" :src="thumbnail" :alt="title">
+        <img :src="thumbnail" :alt="title">
       </figure>
     </div>
     <div class="card-content">

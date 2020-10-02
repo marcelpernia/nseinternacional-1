@@ -5,7 +5,7 @@
 				<div class="column">
 					<h2 class="title is-4 mb-6 is-uppercase">Quiénes somos</h2>
 					<figure class="image is-4by5">
-						<img :src="post.image | thumbnail('directus-large-contain')" alt="">
+						<img :src="imageUrl(post.image) | thumbnail('directus-large-contain')" alt="">
 					</figure>
 				</div>
 				<div class="column pl-5">
@@ -36,13 +36,13 @@
 				.then(response => {
 					const {content, image} = response.data.data
 
-					axios.get(`${this.api}/files/${image}`)
+					axios.get(`${this.api}/files/${image}?fields=private_hash`)
 						.then(response => {
-							const file = response.data.data.data.asset_url
+							const private_hash = response.data.data.private_hash
 							
 							this.post = {
 								content,
-								image: `https://admin.nseinternacional.org${file}`
+								image: private_hash
 							}
 						})
 				})
@@ -52,6 +52,11 @@
 		filters: {
 			thumbnail(data, key="directus-medium-contain") {
 				return `${data}?key=${key}`
+			}
+		},
+		methods: {
+			imageUrl(value) {
+				return `https://admin.nseinternacional.org/public/nseinternacional/assets/${value}`;
 			}
 		}
 	}
