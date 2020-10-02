@@ -6,7 +6,7 @@
 		  	<div class="column is-3-desktop is-6-mobile" v-for="item in items" :key="item.id">
 		  		<a class="item" target="_blank" :href="item.url">
 			  		<figure class="image is-square">
-			  			<img :src="imageUrl(item.img)" :alt="item.title">
+			  			<img :src="imageUrl(item.img) | thumbnail" :alt="item.title">
 			  		</figure>
 		  		</a>
 		  	</div>
@@ -32,7 +32,7 @@
 					.then(response => response.data.data.map(item => {
 						const {id, title, url, slug, cover} = item
 
-						axios.get(`${this.api}/files/${cover}`)
+						axios.get(`${this.api}/files/${cover}?fields=private_hash`)
 							.then(response => {
 								const private_hash = response.data.data.private_hash
 						
@@ -57,7 +57,7 @@
 		},
 		filters: {
 			thumbnail(data) {
-				return `${data}?key=cover`
+				return `${data}?key=podcast`
 			}
 		}
 	}
