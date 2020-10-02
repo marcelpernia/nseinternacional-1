@@ -34,14 +34,14 @@
 
 						axios.get(`${this.api}/files/${cover}`)
 							.then(response => {
-								const assetUrl = response.data.data.data.asset_url
+								const private_hash = response.data.data.private_hash
 						
 								this.items.push({
 									id,
 									title,
 									url,
 									slug,
-									img: assetUrl
+									img: private_hash
 								})
 							})
 
@@ -52,7 +52,7 @@
 		},
 		methods: {
 			imageUrl(value) {
-				return `https://admin.nseinternacional.org${value}`;
+				return `https://admin.nseinternacional.org/public/nseinternacional/assets/${value}`;
 			}
 		},
 		filters: {
