@@ -1,7 +1,7 @@
 <template>
 	<div class="tile is-ancestor">
 	  <div class="tile is-6 bigger has-img">
-	    <img class="filter-1" :src="item.img1 | thumbnail('directus-large-contain')" alt="">
+	    <img class="filter-1" :src="imageUrl(item.img1) | thumbnail('directus-large-contain')" alt="">
 	    <div>
 	    	<h4 class="title is-5 has-text-white">{{item.text_2}}</h4>
 	    </div>
@@ -32,7 +32,7 @@
 					</div>
 				</a>
 				<div class="tile smaller has-img">
-				 	<img :src="item.img2 | thumbnail('medium')" alt="">
+				 	<img :src="imageUrl(item.img2) | thumbnail('medium')" alt="">
 				</div>
 	  	</div>
 	  </div>
@@ -59,15 +59,17 @@
 					.then(response => {
 						const {text_2, img_1, img_2} = response.data.data
 
-						axios.get(`${this.api}/files/${img_1},${img_2}`)
+						axios.get(`${this.api}/files/${img_1},${img_2}?fields=id,private_hash`)
 							.then(response => {
-								const files = response.data.data
-								let img1 = files.find(item => item.id === img_1)
-								let img2 = files.find(item => item.id === img_2)
+
+								const private_hash = response.data.data
+								let img1 = private_hash.find(item => item.id === img_1)
+								let img2 = private_hash.find(item => item.id === img_2)
+
 								this.item = {
 									text_2, 
-									'img1': `https://admin.nseinternacional.org${img1.data.asset_url}`,
-									'img2': `https://admin.nseinternacional.org${img2.data.asset_url}`
+									'img1': img1.private_hash,
+									'img2': img2.private_hash
 								}
 							})
 					})
@@ -78,6 +80,11 @@
 		filters: {
 			thumbnail(data, key="directus-medium-contain") {
 				return `${data}?key=${key}`
+			}
+		},
+		methods: {
+			imageUrl(value) {
+				return `https://admin.nseinternacional.org/public/nseinternacional/assets/${value}`;
 			}
 		}
 	}
