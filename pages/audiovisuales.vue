@@ -10,23 +10,21 @@
 						<input class="input" type="text" placeholder="Escribe una palabra clave" v-model="title">
 					</div>
 					<div class="level-item">
-						<form action="" class="form">
-							<div class="field has-addons is-expanded">
-							  <div class="control is-expanded">
-							    <span class="select is-fullwidth">
-							      <select name="type" v-model="typeSelect">
-							      	<option value="">Todo</option>
-							        <option value="cine">Cine</option>
-							        <option value="radio">Radio</option>
-							        <option value="tv">Tv</option>
-							      </select>
-							    </span>
-							  </div>
-							  <div class="control">
-							    <button class="button is-link" :class="{'is-loading': loading}">Buscar</button>
-							  </div>
-							</div>
-						</form>
+						<div class="field has-addons is-expanded">
+						  <div class="control is-expanded">
+						    <span class="select is-fullwidth">
+						      <select v-model="typeSelect">
+						      	<option value="">Todo</option>
+						        <option value="cine">Cine</option>
+						        <option value="radio">Radio</option>
+						        <option value="tv">Tv</option>
+						      </select>
+						    </span>
+						  </div>
+						  <div class="control">
+						    <button class="button is-link" :class="{'is-loading': loading}" @click="searchType()">Buscar</button>
+						  </div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -75,7 +73,7 @@
 				items: [],
 				limit: 30,
 				title: '',
-				typeSelect: this.$route.query.type == undefined ? '' : this.$route.query.type
+				typeSelect: this.$route.params.type === undefined ? '' : this.$route.params.type
 			}
 		},
 		created(){
@@ -106,6 +104,9 @@
 					}))
 					.catch(error => console.log(error))
 					.finally(() => this.loading = false)
+			},
+			searchType() {
+				this.$router.push(`/audiovisuales/${this.typeSelect}`)
 			}
 		},
 		filters: {
@@ -124,6 +125,7 @@
 		watch:{
 	    $route (to, from){
 	      this.getPosts()
+	      this.$route.params.type === undefined ? this.typeSelect = '' : this.typeSelect = this.$route.params.type
 	    }
 	  }
 	}
