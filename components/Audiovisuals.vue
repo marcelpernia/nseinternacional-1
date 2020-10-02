@@ -40,17 +40,16 @@
 					.then(response => response.data.data.map(item => {
 						const {id, title, type, image, link, sort} = item
 
-						axios.get(`${this.api}/files/${image}`)
+						axios.get(`${this.api}/files/${image}?fields=private_hash`)
 							.then(response => {
-								const assetUrl = response.data.data.data.asset_url
-						
+								const private_hash = response.data.data.private_hash
 								this.items.push({
 									id,
 									title,
 									icontype: type,
 									link,
 									sort,
-									img: assetUrl
+									img: `/public/nseinternacional/assets/${private_hash}`
 								})
 							})
 
