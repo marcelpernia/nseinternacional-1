@@ -29,7 +29,7 @@
 		    	</div>
 		    	<div class="slide-image">
 		    		<span class="slide-gradient"></span>
-		     		<img :src="imageUrl(item.assetUrl) | slider" alt="">
+		     		<img :src="imageUrl(item.img) | slider" alt="">
 		    	</div>
 		    </slide>
 		  </carousel>
@@ -59,16 +59,16 @@
 					.then(response => response.data.data.map(item => {
 						const {id, title, status, description, image, link} = item
 
-						axios.get(`${this.api}/files/${image}`)
+						axios.get(`${this.api}/files/${image}?fields=private_hash`)
 							.then(response => {
-								const assetUrl = response.data.data.data.asset_url
+								const img = response.data.data.private_hash
 						
 								this.items.push({
 									id,
 									title,
 									status,
 									description,
-									assetUrl,
+									img,
 									link
 								})
 							})
@@ -82,7 +82,7 @@
 		},
 		methods: {
 			imageUrl(value) {
-				return `https://admin.nseinternacional.org${value}`;
+				return `https://admin.nseinternacional.org/public/nseinternacional/assets/${value}`;
 			}
 		},
 		filters: {
