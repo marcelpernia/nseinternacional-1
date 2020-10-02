@@ -42,7 +42,7 @@
 		    	:link="item.link"
 		      :icontype="item.icontype" 
 		      :title="item.title"
-		      :thumbnail="item.img | thumbnail('medium')">
+		      :thumbnail="imageUrl(item.img) | thumbnail('medium')">
 		    </Card>
 			</div>
 		</div>
@@ -87,9 +87,9 @@
 					.then(response => response.data.data.map(item => {
 						const {id, title, type, image, link, sort} = item
 
-						axios.get(`${this.api}/files/${image}`)
+						axios.get(`${this.api}/files/${image}?fields=private_hash`)
 							.then(response => {
-								const assetUrl = response.data.data.data.asset_url
+								const private_hash = response.data.data.private_hash
 						
 								this.items.push({
 									id,
@@ -97,13 +97,16 @@
 									icontype: type,
 									link,
 									sort,
-									img: `https://admin.nseinternacional.org${assetUrl}`
+									img: private_hash
 								})
 							})
 							.finally(() => this.loading = false)
 					}))
 					.catch(error => console.log(error))
 					.finally(() => this.loading = false)
+			},
+			imageUrl(value) {
+				return `https://admin.nseinternacional.org/public/nseinternacional/assets/${value}`;
 			},
 			searchType() {
 				this.$router.push(`/audiovisuales/${this.typeSelect}`)
