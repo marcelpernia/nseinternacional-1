@@ -49,7 +49,7 @@
 									icontype: type,
 									link,
 									sort,
-									img: `/public/nseinternacional/assets/${private_hash}`
+									img: private_hash
 								})
 							})
 
@@ -60,7 +60,7 @@
 		},
 		methods: {
 			imageUrl(value) {
-				return `https://admin.nseinternacional.org${value}`;
+				return `https://admin.nseinternacional.org/public/nseinternacional/assets/${value}`;
 			}
 		},
 		filters: {
