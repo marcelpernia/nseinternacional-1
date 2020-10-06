@@ -70,7 +70,7 @@
 	</div>
 </template>
 
-<style lang="scss">
+<style>
 	.is-visible {
 		display: block !important;
 	}
@@ -82,34 +82,38 @@
 	}
 	.hero.class-cine {
 		background-color: var(--lightblue);
-		.title, p {
-			color: #fff;
-		}
 	}
+	.hero.class-cine .title, 
+	.hero.class-cine p {
+		color: #fff;
+	}
+
 	.hero.class-radio {
 		background-color: var(--darkblue);
-		.title, p {
-			color: #fff;
-		}
 	}
+	.hero.class-radio .title, 
+	.hero.class-radio p {
+		color: #fff;
+	}
+
 	.hero.class-tv {
 		background-color: var(--beige);
-		.title, p {
-			color: #000;
-		}
 	}
+	.hero.class-tv .title,
+	.hero.class-tv p {
+		color: #000;
+	}
+	
 	.hero.is-bold {
 		box-shadow: inset 0 -170px 110px -90px rgba(0,0,0,0.1);
 	}
 	@media (max-width: 768px) {
-		.hero {
-			.title {
-				padding-bottom: 0;
-				margin-bottom: 10px;
-			}
-			p {
-				font-size: 14px;
-			}
+		.hero .title {
+			padding-bottom: 0;
+			margin-bottom: 10px;
+		}
+		.hero p {
+			font-size: 14px;
 		}
 	}
 	
