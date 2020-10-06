@@ -34,7 +34,11 @@ export default {
   ],
   purgeCSS: {
    // your settings here
-    // whitelist: []
+    whitelist: [
+      'class-radio', 
+      'class-tv', 
+      'class-cine'
+    ]
   },
 
   // Modules (https://go.nuxtjs.dev/config-modules)

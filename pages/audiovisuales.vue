@@ -17,9 +17,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="class-cine is-hidden"></div>
-			<div class="class-radio is-hidden"></div>
-			<div class="class-tv is-hidden"></div>
 		</div>
 		<div class="section">
 			<div class="container">	
@@ -73,7 +70,7 @@
 	</div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 	.is-visible {
 		display: block !important;
 	}
@@ -83,8 +80,24 @@
 	.form {
 		width: 100%;
 	}
-
-
+	.hero.class-cine {
+		background-color: var(--lightblue);
+		.title, p {
+			color: #fff;
+		}
+	}
+	.hero.class-radio {
+		background-color: var(--darkblue);
+		.title, p {
+			color: #fff;
+		}
+	}
+	.hero.class-tv {
+		background-color: var(--beige);
+		.title, p {
+			color: #000;
+		}
+	}
 	.hero.is-bold {
 		box-shadow: inset 0 -170px 110px -90px rgba(0,0,0,0.1);
 	}
