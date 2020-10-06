@@ -6,10 +6,6 @@
 
 				<div class="columns is-centered">
 					<div class="column is-half">
-						<div v-if="feedback" :class="" class="notification is-success is-light mb-2">
-							<button class="delete" @click="feedback = false"></button>
-							<strong>Hemos recibido tu mensaje.</strong> Gracias por escribirnos!
-						</div>
 						<div class="box">
 							<form @submit.prevent="sendEmail">
 								<div class="field">
@@ -47,6 +43,10 @@
 									</button>
 								</div>
 							</form>
+							<div v-if="feedback" class="notification is-light mt-2">
+								<button class="delete" @click="feedback = false"></button>
+								<strong>Hemos recibido tu mensaje.</strong> Gracias por escribirnos!
+							</div>
 						</div>
 					</div>
 				</div>
@@ -103,5 +103,8 @@
 		height: 100%;
 		background-color: #f8f8f8 !important;
 		box-shadow: 0 3000px 0 #f8f8f8;
+	}
+	.notification {
+		background-color: #F4E4C8;
 	}
 </style>

@@ -1,7 +1,7 @@
 <template>
 	<div class="tile is-ancestor">
 	  <div class="tile is-6 bigger has-img">
-	    <img class="filter-1" :src="imageUrl(item.img1) | thumbnail('directus-large-contain')" alt="">
+	    <img :src="imageUrl(item.img1) | thumbnail('directus-large-contain')" alt="">
 	    <div>
 	    	<h4 class="title is-5 has-text-white">{{item.text_2}}</h4>
 	    </div>
@@ -11,15 +11,15 @@
 				<a href="/audiovisuales/radio" class="tile smaller color-1">
 				 	<div>
 				 		<icon-radio></icon-radio>
-				 		<h4 class="title is-4 has-text-white my-4">Radio</h4>
-				 		<p class="has-text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+				 		<h4 class="title is-4 has-text-white my-4 is-uppercase">Radio</h4>
+				 		<p class="has-text-white">NSE Radio continúa evangelizando...</p>
 				 	</div>
 				</a>
 				<a href="/audiovisuales/cine" class="tile smaller color-2">
 				 	<div>
 				 		<icon-film></icon-film>
-				 		<h4 class="title is-4 has-text-white my-4">Cine</h4>
-				 		<p class="has-text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+				 		<h4 class="title is-4 has-text-white my-4 is-uppercase">Cine</h4>
+				 		<p class="has-text-white">NSE Cine trabaja por dar a conocer...</p>
 				 	</div>
 				</a>
 	  	</div>
@@ -27,12 +27,12 @@
 				<a href="/audiovisuales/tv" class="tile smaller color-3">
 					<div>
 						<icon-tv></icon-tv>
-						<h4 class="title is-4 has-text-white my-4">Televisión</h4>
-						<p class="has-text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+						<h4 class="title is-4 my-4 is-uppercase">Televisión</h4>
+						<p class="">NSE Televisión transmite una programación...</p>
 					</div>
 				</a>
 				<div class="tile smaller has-img">
-				 	<img :src="imageUrl(item.img2) | thumbnail('medium')" alt="">
+				 	<img class="filter-1" :src="imageUrl(item.img2) | thumbnail('medium')" alt="">
 				</div>
 	  	</div>
 	  </div>
