@@ -81,7 +81,7 @@
 		width: 100%;
 	}
 	.hero.class-cine {
-		background-color: var(--lightblue);
+		background-color: #005EB8;
 	}
 	.hero.class-cine .title, 
 	.hero.class-cine p {
@@ -89,7 +89,7 @@
 	}
 
 	.hero.class-radio {
-		background-color: var(--darkblue);
+		background-color: #003865;
 	}
 	.hero.class-radio .title, 
 	.hero.class-radio p {
@@ -97,7 +97,7 @@
 	}
 
 	.hero.class-tv {
-		background-color: var(--beige);
+		background-color: #BD9B60;
 	}
 	.hero.class-tv .title,
 	.hero.class-tv p {
