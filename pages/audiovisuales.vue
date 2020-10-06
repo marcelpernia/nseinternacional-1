@@ -70,12 +70,9 @@
 	</div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 	.is-visible {
 		display: block !important;
-	}
-	.title:first-letter {
-		text-transform: uppercase !important;
 	}
 	.subtitle {
 		min-height: 25px;
