@@ -27,8 +27,8 @@
 				<a href="/audiovisuales/tv" class="tile smaller color-3">
 					<div>
 						<icon-tv></icon-tv>
-						<h4 class="title is-4 my-4 is-uppercase">Televisión</h4>
-						<p class="">NSE Televisión transmite una programación...</p>
+						<h4 class="title is-4 my-4 is-uppercase has-text-dark">Televisión</h4>
+						<p class=" has-text-dark">NSE Televisión transmite una programación...</p>
 					</div>
 				</a>
 				<div class="tile smaller has-img">
