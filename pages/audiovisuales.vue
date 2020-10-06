@@ -17,6 +17,9 @@
 					</div>
 				</div>
 			</div>
+			<div class="class-cine is-hidden"></div>
+			<div class="class-radio is-hidden"></div>
+			<div class="class-tv is-hidden"></div>
 		</div>
 		<div class="section">
 			<div class="container">	
@@ -81,7 +84,7 @@
 		width: 100%;
 	}
 
-	
+
 	.hero.is-bold {
 		box-shadow: inset 0 -170px 110px -90px rgba(0,0,0,0.1);
 	}
