@@ -65,7 +65,7 @@
 		&-image {
 			background-color: #000000;
 			img {
-				object-fit: cover;
+				object-fit: contain;
 			}
 		}
 		&:hover .card-content .image {
