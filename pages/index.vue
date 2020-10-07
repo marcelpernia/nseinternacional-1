@@ -60,7 +60,13 @@
 
 <script>
   export default {
-    
+    head: {
+      title: 'nseinternacional.org',
+      meta: [
+        { hid: 'description', name: 'description', content: 'NSE (Nuestra Señora del Encuentro con Dios) Internacional es un portal de multimedia que promueve el material audiovisual de NSE TV y NSE Radio' },
+        { property: 'og:image', content: 'https://admin.nseinternacional.org/public/nseinternacional/assets/aj1ll5lzfbc4w4c0?key=directus-large-contain' }
+      ]
+    },
   }
 </script>
 
