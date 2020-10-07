@@ -10,7 +10,7 @@
 						Tiene presencia en 7 países y cuenta con 10 estudios de grabación de radio y 7 emisoras.</p>
 					</div>
 					<div class="content" v-if="getType === 'tv'">
-						<p>NSE Televisión, desde el 2006, bajo el amparo de la Virgen María, Nuestra Señora del Encuentro con Dios, transmite una programación fiel al depósito de la fe contenido en la Sagrada Escritura y la Tradición de la Iglesia Católica, convencida de que la más alta calidad que puede ofrecer a su audiencia es la belleza y atractivo de la Verdad de Dios contenida en su Palabra. Tiene presencia en 3 países y cuenta con 4 estudios de grabación y 3 canales de TV.</p>
+						<p>NSE Televisión, desde el 2003, bajo el amparo de la Virgen María, Nuestra Señora del Encuentro con Dios, transmite una programación fiel al depósito de la fe contenido en la Sagrada Escritura y la Tradición de la Iglesia Católica, convencida de que la más alta calidad que puede ofrecer a su audiencia es la belleza y atractivo de la Verdad de Dios contenida en su Palabra. Tiene presencia en 3 países y cuenta con 4 estudios de grabación y 3 canales de TV.</p>
 					</div>
 					<div class="content" v-if="getType === 'cine'">
 						<p>NSE Cine, desde el 2016, bajo el amparo de la Virgen María, Nuestra Señora del Encuentro con Dios,  trabaja por dar a conocer la Verdad de Dios, fuente de amor y de vida, según las enseñanzas de la Sagrada Escritura y la Tradición de la Iglesia Católica, para llevar a los hombres a un encuentro personal con Dios.</p>
@@ -23,11 +23,51 @@
 				<div class="has-text-centered">
 					<h2 class="title is-4 is-uppercase pb-2" v-if="!hasType">{{getTitle}}</h2>
 				</div>
+
+				<div class="columns">
+					<div class="column">
+						<div class="tabs is-centered-mobile">
+						  <ul>
+						    <!-- <li>
+						      <nuxt-link to="/audiovisuales">
+						        <span class="icon is-small"><i class="fas fa-search" aria-hidden="true"></i></span>
+						        <span>TODO</span>
+						      </nuxt-link>
+						    </li> -->
+						    <li>
+						      <nuxt-link to="/audiovisuales/radio">
+						        <span class="icon is-small"><i class="fas fa-microphone-alt" aria-hidden="true"></i></span>
+						        <span>RADIO</span>
+						      </nuxt-link>
+						    </li>
+						    <li>
+						      <nuxt-link to="/audiovisuales/tv">
+						        <span class="icon is-small"><i class="fas fa-tv" aria-hidden="true"></i></span>
+						        <span>TV</span>
+						      </nuxt-link>
+						    </li>
+						    <li>
+						      <nuxt-link to="/audiovisuales/cine">
+						        <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
+						        <span>CINE</span>
+						      </nuxt-link>
+						    </li>
+						  </ul>
+						</div>
+					</div>
+					<div class="column is-narrow">
+						<div class="control has-icons-left" :class="{'is-loading': searching}">
+							<span class="icon is-small is-left">
+					      <i class="fas fa-search"></i>
+					    </span>
+							<input @input.trim="isSearching" class="input" type="text" placeholder="Buscar por título..." v-model="title">
+						</div>
+					</div>
+				</div>
 				
-				<div class="level">
+				<!-- <div class="level">
 					<div class="level-left">
 						<div class="level-item">
-							<input class="input" type="text" placeholder="Escribe una palabra clave" v-model="title">
 						</div>
 						<div class="level-item">
 							<div class="field has-addons is-expanded">
@@ -47,7 +87,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="buttons is-centered" v-if="loading">
 					<a class="button is-white">
 						<span class="icon"><i class="fa fa-spinner fa-spin"></i></span>
@@ -101,6 +141,10 @@
 	.hero.is-bold {
 		box-shadow: inset 0 -170px 110px -90px rgba(0,0,0,0.1);
 	}
+	.nuxt-link-exact-active {
+		border-bottom-color: var(--darkblue);
+		color: var(--darkblue);
+	}
 	@media (max-width: 768px) {
 		.hero .title {
 			padding-bottom: 0;
@@ -108,6 +152,15 @@
 		}
 		.hero p {
 			font-size: 14px;
+		}
+		.tabs.is-centered-mobile ul {
+    	justify-content: center;
+		}
+	}
+
+	@media (max-width: 420px) {
+		.tabs a {
+			/*font-size: 11px;*/
 		}
 	}
 	
@@ -118,6 +171,7 @@
 		data() {
 			return {
 				loading: true,
+				searching: false,
 				api: 'https://admin.nseinternacional.org/public/nseinternacional',
 				items: [],
 				limit: 30,
@@ -159,7 +213,12 @@
 			},
 			searchType() {
 				this.$router.push(`/audiovisuales/${this.typeSelect}`)
-			}
+			},
+			isSearching() {
+				this.searching = true
+				setTimeout(() => this.searching = false, 1000);
+      	// return console.log('escribiendo');
+      }
 		},
 		filters: {
 			thumbnail(data, key="directus-medium-contain") {
@@ -171,7 +230,7 @@
 				return this.items.sort((a, b) => a.sort - b.sort)
 			},
 			posts() {
-        return this.ordered.filter((item) => item.title.toLowerCase().includes(this.title.toLowerCase()));
+        return this.ordered.filter((item) => item.title.toLowerCase().includes(this.title.toLowerCase().trim()));
       },
       hasType() {
       	return this.$route.params.type === undefined ? false : true

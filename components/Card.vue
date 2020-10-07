@@ -24,7 +24,8 @@
 			'title', 
 			'thumbnail', 
 			'icontype',
-			'link'
+			'link',
+			'clase'
 		],
 		computed: {
 			getIcon() {

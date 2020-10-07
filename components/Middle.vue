@@ -31,7 +31,7 @@
 						<p class=" has-text-dark">NSE Televisión transmite una programación...</p>
 					</div>
 				</a>
-				<div class="tile smaller has-img">
+				<div class="tile smaller has-img is-hidden-mobile">
 				 	<img class="filter-1" :src="imageUrl(item.img2) | thumbnail('medium')" alt="">
 				</div>
 	  	</div>

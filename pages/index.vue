@@ -6,7 +6,7 @@
     <Podcasts></Podcasts>
     <div class="section section--feature">
       <div class="container">
-        <div class="level">
+        <!-- <div class="level">
           <div class="level-left">
             <h2 class="has-text-centered title is-4 has-text-white">LO MÁS DESTACADO</h2>
           </div>
@@ -20,7 +20,9 @@
               </a>
             </div>
           </div>
-        </div>
+        </div> -->
+
+        <h2 class="has-text-centered title is-4 has-text-white">LO MÁS DESTACADO</h2>
 
         <Audiovisuals 
           section="destacado" 

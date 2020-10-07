@@ -18,19 +18,24 @@
         <nuxt-link class="navbar-item" to="/audiovisuales/tv">Tv</nuxt-link>
         <nuxt-link class="navbar-item" to="/audiovisuales/cine">Cine</nuxt-link>
         <nuxt-link class="navbar-item" to="/contacto">Contacto</nuxt-link>
-        <nuxt-link @click="toggleMenu" to="/audiovisuales" class="navbar-item">
+        <!-- <nuxt-link class="navbar-item" to="/audiovisuales">
           <span class="icon"><i class="fa fa-search"></i></span>
-        </nuxt-link>
+        </nuxt-link> -->
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
+          <nuxt-link class="button is-primary" to="/audiovisuales">
+            <span class="icon"><i class="fa fa-search"></i></span>
+          </nuxt-link>
+        </div>
+        <!-- <div class="navbar-item">
           <div class="buttons">
             <a class="button is-danger">
               Donar
             </a>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </nav>
@@ -72,6 +77,10 @@ export default {
           width: 120px;
         }
       }
+    }
+    &-item {
+      text-transform: uppercase;
+      font-size: 14px;
     }
 	}
 </style>

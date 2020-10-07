@@ -32,6 +32,13 @@ a:visited {
   }
 }
 
+.button.is-primary {
+  background-color: $beige;
+  &:hover {
+    background-color: #A78957 !important;
+  }
+}
+
 .input::-moz-placeholder, 
 .textarea::-moz-placeholder, 
 .select select::-moz-placeholder {

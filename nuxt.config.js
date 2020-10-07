@@ -37,7 +37,8 @@ export default {
     whitelist: [
       'class-radio', 
       'class-tv', 
-      'class-cine'
+      'class-cine',
+      'nuxt-link-exact-active'
     ]
   },
 
