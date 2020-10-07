@@ -3,11 +3,14 @@
 		<div class="hero is-bold" :class="getTypeClass" v-if="hasType">
 			<div class="container">
 				<div class="section">
-					<h2 class="title is-4 is-uppercase">{{getTitle}}</h2>
+					<h2 class="title is-4 is-uppercase">
+						<icon-radio v-if="getType === 'radio'"/>
+						<icon-tv v-if="getType === 'tv'"/>
+						<icon-cine v-if="getType === 'cine'"/>
+						{{getTitle}}
+					</h2>
 					<div class="content" v-if="getType === 'radio'">
-						<p>NSE Radio, desde 1994, bajo el amparo de la Virgen María, Nuestra Señora del Encuentro con Dios, continúa evangelizando a los oyentes del mundo de habla hispana según las enseñanzas de la Sagrada Escritura y la Tradición de la Iglesia Católica.
-						Considera la radio como un instrumento informativo y formativo excelente para conocer la Verdad plena y amar el Bien sumo. Trabaja por ser portadora de la verdad: educar en la verdad, defender la verdad, fomentar la verdad.
-						Tiene presencia en 7 países y cuenta con 10 estudios de grabación de radio y 7 emisoras.</p>
+						<p>{{content1}}</p>
 					</div>
 					<div class="content" v-if="getType === 'tv'">
 						<p>NSE Televisión, desde el 2003, bajo el amparo de la Virgen María, Nuestra Señora del Encuentro con Dios, transmite una programación fiel al depósito de la fe contenido en la Sagrada Escritura y la Tradición de la Iglesia Católica, convencida de que la más alta calidad que puede ofrecer a su audiencia es la belleza y atractivo de la Verdad de Dios contenida en su Palabra. Tiene presencia en 3 países y cuenta con 4 estudios de grabación y 3 canales de TV.</p>
@@ -114,6 +117,12 @@
 	.is-visible {
 		display: block !important;
 	}
+	.title svg {
+		width: 30px;
+		display: inline-block;
+		vertical-align: middle;
+		margin-top: -4px;
+	}
 	.subtitle {
 		min-height: 25px;
 	}
@@ -176,7 +185,11 @@
 				items: [],
 				limit: 30,
 				title: '',
-				typeSelect: this.$route.params.type === undefined ? '' : this.$route.params.type
+				typeSelect: this.$route.params.type === undefined ? '' : this.$route.params.type,
+				content1: `NSE Radio, desde 1994, bajo el amparo de la Virgen María, Nuestra Señora del Encuentro con Dios, continúa evangelizando a los oyentes del mundo de habla hispana según las enseñanzas de la Sagrada Escritura y la Tradición de la Iglesia Católica.
+						Considera la radio como un instrumento informativo y formativo excelente para conocer la Verdad plena y amar el Bien sumo. Trabaja por ser portadora de la verdad: educar en la verdad, defender la verdad, fomentar la verdad.
+						Tiene presencia en 7 países y cuenta con 10 estudios de grabación de radio y 7 emisoras.`,
+
 			}
 		},
 		created(){
@@ -217,7 +230,6 @@
 			isSearching() {
 				this.searching = true
 				setTimeout(() => this.searching = false, 1000);
-      	// return console.log('escribiendo');
       }
 		},
 		filters: {

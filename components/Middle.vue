@@ -17,7 +17,7 @@
 				</a>
 				<a href="/audiovisuales/cine" class="tile smaller color-2">
 				 	<div>
-				 		<icon-film></icon-film>
+				 		<icon-cine></icon-cine>
 				 		<h4 class="title is-4 has-text-white my-4 is-uppercase">Cine</h4>
 				 		<p class="has-text-white">NSE Cine trabaja por dar a conocer...</p>
 				 	</div>
