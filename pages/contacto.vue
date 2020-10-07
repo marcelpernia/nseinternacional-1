@@ -37,6 +37,9 @@
 										v-model="mensaje"></textarea>
 								</div>
 								<div class="field">
+									<div class="g-recaptcha" data-sitekey="6Lfvj9QZAAAAADMHlXYhtMu2K2Z4BZgc9t36tQTL"></div>
+								</div>
+								<div class="field">
 									<button type="submit" :class="{'is-loading': sending}" class="button is-link is-medium is-fullwidth">
 										<span>Enviar mensaje</span>
 										<span class="icon"><i class="fa fa-paper-plane"></i></span>
@@ -63,7 +66,8 @@
 	    return {
 	      title: 'Contacto', // Other meta information
 	      script: [
-	        { hid: 'emailsend', src: '/smtp.js', defer: true }
+	        { hid: 'emailsend', src: '/smtp.js', defer: true },
+	        { hid: 'recaptcha', src: 'https://www.google.com/recaptcha/api.js', defer: true }
 	      ]
 	    }
 	  },
