@@ -46,9 +46,9 @@
 									</button>
 								</div>
 							</form>
-							<div v-if="feedback" class="notification is-light mt-2">
+							<div v-if="feedback" class="notification is-light mt-2" :class="statusClass">
 								<button class="delete" @click="feedback = false"></button>
-								<strong>Hemos recibido tu mensaje.</strong> Gracias por escribirnos!
+								{{statusMessage}}
 							</div>
 						</div>
 					</div>
@@ -61,6 +61,7 @@
 <script>
 	import emailjs from 'emailjs-com';
 	export default {
+		name: 'pagina contacto',
 		scrollToTop: true,
 		head() {
 	    return {
@@ -75,6 +76,8 @@
 	  	return {
 	  		sending: false,
 	  		feedback: false,
+	  		statusMessage: '',
+	  		statusClass: '',
 	  		nombre: '',
 	  		email: '',
 	  		mensaje: ''
@@ -87,17 +90,24 @@
 	      emailjs.sendForm('service_a4ci666', 'template_c4mp1xf', e.target, 'user_xHECOOvKNOTcwdQtVTmCB')
 	        .then((result) => {
 	          console.log('SUCCESS!', result.status, result.text);
-
+	          this.statusMessage = 'Hemos recibido tu mensaje. Gracias por escribirnos!'
+	          this.statusClass = 'is-success'
 	        	this.feedback = true
+
+	        	this.nombre = ''
+			  		this.email = ''
+			  		this.mensaje = ''
 	        })
 	        .catch(error => {
-	        	console.log('FAILED', error)
+	        	// console.log('FAILED', error.status)
+    				if (error.status === 400) {
+	    				this.feedback = true
+	    				this.statusClass = 'is-danger'
+	    				this.statusMessage = 'Por favor complete el reCAPTCHA'
+    				}
 	        })
 	        .finally(() => {
 						this.sending = false
-						this.nombre = ''
-			  		this.email = ''
-			  		this.mensaje = ''
 					})
 	    }
 		}
@@ -110,6 +120,10 @@
 		box-shadow: 0 3000px 0 #f8f8f8;
 	}
 	.notification {
+		font-size: 14px;
+		padding: 10px;
+	}
+	.notification.is-success {
 		background-color: #F4E4C8;
 	}
 </style>

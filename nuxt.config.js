@@ -41,7 +41,9 @@ export default {
       'class-radio', 
       'class-tv', 
       'class-cine',
-      'nuxt-link-exact-active'
+      'nuxt-link-exact-active',
+      'notification.is-success',
+      'notification.is-danger'
     ]
   },
 
