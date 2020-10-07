@@ -58,9 +58,10 @@
 <script>
 	import emailjs from 'emailjs-com';
 	export default {
+		scrollToTop: true,
 		head() {
 	    return {
-	      title: 'Pagina de contacto', // Other meta information
+	      title: 'Contacto', // Other meta information
 	      script: [
 	        { hid: 'emailsend', src: '/smtp.js', defer: true }
 	      ]

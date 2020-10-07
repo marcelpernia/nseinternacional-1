@@ -60,6 +60,7 @@
 
 <script>
   export default {
+    scrollToTop: true,
     head: {
       title: 'nseinternacional.org',
       meta: [

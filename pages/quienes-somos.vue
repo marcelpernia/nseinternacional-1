@@ -20,6 +20,7 @@
 	import axios from 'axios';
 
 	export default {
+		scrollToTop: true,
 		data() {
 			return {
 				isActive: false,
