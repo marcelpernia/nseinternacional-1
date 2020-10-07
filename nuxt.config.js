@@ -31,6 +31,9 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     'nuxt-purgecss',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-179974711-1'
+    }]
   ],
   purgeCSS: {
    // your settings here
