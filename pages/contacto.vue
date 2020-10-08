@@ -90,9 +90,9 @@
 	      emailjs.sendForm('service_a4ci666', 'template_c4mp1xf', e.target, 'user_xHECOOvKNOTcwdQtVTmCB')
 	        .then((result) => {
 	          console.log('SUCCESS!', result.status, result.text);
-	          this.statusMessage = 'Hemos recibido tu mensaje. Gracias por escribirnos!'
-	          this.statusClass = 'is-success'
 	        	this.feedback = true
+	          this.statusClass = 'is-success'
+	          this.statusMessage = 'Hemos recibido tu mensaje. Gracias por escribirnos!'
 
 	        	this.nombre = ''
 			  		this.email = ''
@@ -125,5 +125,6 @@
 	}
 	.notification.is-success {
 		background-color: #F4E4C8;
+		color: var(--beige);
 	}
 </style>
