@@ -117,7 +117,9 @@
 					      :title="item.title"
 					      :thumbnail="imageUrl(item.img) | thumbnail('medium')">
 					    </Card>
-					    <div class="notification is-light has-text-centered mt-5 column is-half is-offset-one-quarter" v-if="empty">0 resultados para esta búsqueda</div>
+	
+					    <div class="notification is-light has-text-centered mt-5 column is-half is-offset-one-quarter" v-if="empty & posts.length < 1">0 resultados para esta búsqueda</div>
+
 						</div>
 					</div>
 				</div>
