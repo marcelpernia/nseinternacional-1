@@ -22,10 +22,10 @@
 				type: Number,
 				default: 1
 			},
-			section: {
-				type: String,
+			category: {
+				type: Number,
 				required: true,
-				default: 'destacado'
+				default: 1
 			}
 		},
 		data() {
@@ -36,7 +36,7 @@
 		},
 		async created() {
 			try {
-				await axios.get(`${this.api}/items/audiovisuales?status=published&limit=${this.limit}&filter[section]=${this.section}`)
+				await axios.get(`${this.api}/items/audiovisuales?status=published&limit=${this.limit}&filter[category]=${this.category}`)
 					.then(response => response.data.data.map(item => {
 						const {id, title, type, image, link, sort} = item
 

@@ -37,18 +37,20 @@
           </div>
         </div> -->
 
-        <h2 class="has-text-centered title is-4 has-text-white">LO MÁS DESTACADO</h2>
+        <div class="section">        
+          <h2 class="has-text-centered title is-4 has-text-white">LO MÁS DESTACADO</h2>
 
-        <div class="columns is-mobile is-multiline">
-          <Card
-            class="column is-4-desktop is-12-mobile"
-            v-for="item in destacados"
-            :key="item.id"
-            :link="item.link"
-            :icontype="item.icontype" 
-            :title="item.title"
-            :thumbnail="imageUrl(item.img) | thumbnail('medium')">
-          </Card>
+          <div class="columns is-mobile is-multiline">
+            <Card
+              class="column is-4-desktop is-12-mobile"
+              v-for="item in destacados"
+              :key="item.id"
+              :link="item.link"
+              :icontype="item.icontype" 
+              :title="item.title"
+              :thumbnail="imageUrl(item.img) | thumbnail('medium')">
+            </Card>
+          </div>
         </div>
 
   <!--       <Audiovisuals 
@@ -61,7 +63,7 @@
           <h2 class="has-text-centered title is-4 has-text-white">EL SANTO ROSARIO</h2>
           
           <Audiovisuals 
-            section="rosario" 
+            :category="4" 
             :limit="4" 
             grid="is-3-desktop is-12-mobile">
           </Audiovisuals>    
@@ -71,7 +73,7 @@
           <h2 class="has-text-centered title is-4 has-text-white">NOVENAS</h2>
           
           <Audiovisuals 
-            section="novenas" 
+            :category="5" 
             :limit="3" 
             grid="is-4-desktop is-12-mobile">
           </Audiovisuals>  
