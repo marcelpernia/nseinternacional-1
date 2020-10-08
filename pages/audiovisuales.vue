@@ -59,54 +59,67 @@
 						</div>
 					</div>
 					<div class="column is-narrow">
-						<div class="control has-icons-left" :class="{'is-loading': searching}">
-							<span class="icon is-small is-left">
-					      <i class="fas fa-search"></i>
-					    </span>
-							<input @input.trim="isSearching" class="input" type="text" placeholder="Buscar por título..." v-model="title">
+						<div class="field">
+							<div class="control has-icons-left" :class="{'is-loading': searching}">
+								<span class="icon is-small is-left">
+						      <i class="fas fa-search"></i>
+						    </span>
+								<input @input.trim="isSearching" class="input" type="text" placeholder="Buscar por título..." v-model="title">
+							</div>
+						</div>
+						<div class="field is-hidden-desktop is-hidden-tablet">
+							<a class="button is-fullwidth is-primary" @click="isOpen = !isOpen">
+								<span>Filtrar por categoría</span>
+								<span class="icon"><i class="fa fa-chevron-down"></i></span>
+							</a>
+						</div>
+						<div class="field is-hidden-desktop is-hidden-tablet" v-if="currentCat != ''">
+							<span class="tag is-primary is-medium">
+							  {{currentCat.name}}
+							  <button class="delete is-small" @click="currentCat = ''"></button>
+							</span>
 						</div>
 					</div>
 				</div>
 				
-				<!-- <div class="level">
-					<div class="level-left">
-						<div class="level-item">
+				<div class="columns">
+					<div class="column is-narrow is-hidden-mobile" :class="{'filter-open': isOpen}">
+						<aside class="menu">
+						  <p class="menu-label">
+						    Categorías
+						  </p>
+						  <ul class="menu-list">
+						    <li v-for="cat in categories" :key="cat.id">
+						    	<a 
+						    		@click.self="getCurrentCat(cat.id, cat.name)"
+						    		:class="{'is-active': currentCat.id === cat.id}"
+						    		>{{cat.name}} <button class="delete" @click="currentCat = ''"></button></a>
+						    </li>
+						  </ul>
+						</aside>
+
+					</div>
+					<div class="column">
+						
+						<div class="buttons is-centered" v-if="loading">
+							<a class="button is-white">
+								<span class="icon"><i class="fa fa-spinner fa-spin"></i></span>
+								<span>Cargando...</span>
+							</a> 
 						</div>
-						<div class="level-item">
-							<div class="field has-addons is-expanded">
-							  <div class="control is-expanded">
-							    <span class="select is-fullwidth">
-							      <select v-model="typeSelect">
-							      	<option value="">Todo</option>
-							        <option value="cine">Cine</option>
-							        <option value="radio">Radio</option>
-							        <option value="tv">Tv</option>
-							      </select>
-							    </span>
-							  </div>
-							  <div class="control">
-							    <button class="button is-link" :class="{'is-loading': loading}" @click="searchType()">Buscar</button>
-							  </div>
-							</div>
+						<div class="columns is-mobile is-multiline">
+					    <Card
+					    	class="column is-4-desktop is-half-tablet is-12-mobile"
+					    	v-for="item in posts"
+					    	:key="item.id"
+					    	:link="item.link"
+					      :icontype="item.icontype" 
+					      :title="item.title"
+					      :thumbnail="imageUrl(item.img) | thumbnail('medium')">
+					    </Card>
+					    <div class="notification is-light has-text-centered mt-5 column is-half is-offset-one-quarter" v-if="empty">0 resultados para esta búsqueda</div>
 						</div>
 					</div>
-				</div> -->
-				<div class="buttons is-centered" v-if="loading">
-					<a class="button is-white">
-						<span class="icon"><i class="fa fa-spinner fa-spin"></i></span>
-						<span>Cargando...</span>
-					</a> 
-				</div>
-				<div class="columns is-mobile is-multiline">
-			    <Card
-			    	class="column is-4-desktop is-half-tablet is-12-mobile"
-			    	v-for="item in posts"
-			    	:key="item.id"
-			    	:link="item.link"
-			      :icontype="item.icontype" 
-			      :title="item.title"
-			      :thumbnail="imageUrl(item.img) | thumbnail('medium')">
-			    </Card>
 				</div>
 			</div>
 	  </div>
@@ -114,6 +127,31 @@
 </template>
 
 <style lang="scss" scoped>
+	.tag.is-primary {
+		background-color: var(--lightblue);
+	}
+	.filter-open {
+		display: block !important;
+	}
+	.menu-list {
+		a {
+			position: relative;
+			padding-right: 30px;
+			&.is-active {
+				background-color: var(--lightblue);
+			}
+			.delete {
+				position: absolute;
+				right: 5px;
+				top: 8px;
+			}
+			&:not(.is-active) {
+				.delete {
+					display: none;
+				}
+			}
+		}
+	}
 	.is-visible {
 		display: block !important;
 	}
@@ -186,23 +224,39 @@
 				items: [],
 				limit: 30,
 				title: '',
-				typeSelect: this.$route.params.type === undefined ? '' : this.$route.params.type,
+				// typeSelect: this.$route.params.type === undefined ? '' : this.$route.params.type,
 				content1: `NSE Radio, desde 1994, bajo el amparo de la Virgen María, Nuestra Señora del Encuentro con Dios, continúa evangelizando a los oyentes del mundo de habla hispana según las enseñanzas de la Sagrada Escritura y la Tradición de la Iglesia Católica.
 						Considera la radio como un instrumento informativo y formativo excelente para conocer la Verdad plena y amar el Bien sumo. Trabaja por ser portadora de la verdad: educar en la verdad, defender la verdad, fomentar la verdad.
 						Tiene presencia en 7 países y cuenta con 10 estudios de grabación de radio y 7 emisoras.`,
+				categories: [],
+				currentCat: '',
+				empty: false,
+				isOpen: false
 
 			}
 		},
 		created(){
 			this.getPosts()
+
+			axios.get(`${this.api}/items/category`)
+				.then(response => this.categories = response.data.data)
 		},
 		methods: {
+			getCurrentCat(id, name) {
+				this.currentCat = {id, name}
+				this.isOpen = false
+				if(this.posts.length < 1) {
+					this.empty = true
+				} else {
+					this.empty = false
+				}
+			},
 			getPosts() {
 				this.items = []
 				this.loading = true;
 				axios.get(`${this.api}/items/audiovisuales?status=published&limit=${this.limit}${this.$route.params.type != undefined && `&filter[type]=${this.$route.params.type}`}`)
 					.then(response => response.data.data.map(item => {
-						const {id, title, type, image, link, sort} = item
+						const {id, title, type, image, link, sort, category} = item
 
 						axios.get(`${this.api}/files/${image}?fields=private_hash`)
 							.then(response => {
@@ -214,6 +268,7 @@
 									icontype: type,
 									link,
 									sort,
+									category,
 									img: private_hash
 								})
 							})
@@ -230,7 +285,14 @@
 			},
 			isSearching() {
 				this.searching = true
-				setTimeout(() => this.searching = false, 1000);
+				setTimeout(() => {
+					this.searching = false
+					if(this.posts.length < 1) {
+						this.empty = true
+					} else {
+						this.empty = false
+					}
+				}, 1000);
       }
 		},
 		filters: {
@@ -239,8 +301,15 @@
 			}
 		},
 		computed: {
+			byCategory() {
+				if (this.currentCat != '') {
+					return this.items.filter((item) => item.category === this.currentCat.id);
+				} else {
+					return this.items
+				}
+			},
 			ordered() {
-				return this.items.sort((a, b) => a.sort - b.sort)
+				return this.byCategory.sort((a, b) => a.sort - b.sort)
 			},
 			posts() {
         return this.ordered.filter((item) => item.title.toLowerCase().includes(this.title.toLowerCase().trim()));
@@ -274,7 +343,8 @@
 		watch:{
 	    $route (to, from){
 	      this.getPosts()
-	      this.$route.params.type === undefined ? this.typeSelect = '' : this.typeSelect = this.$route.params.type
+	      this.currentCat = ''
+	      // this.$route.params.type === undefined ? this.typeSelect = '' : this.typeSelect = this.$route.params.type
 	    }
 	  }
 	}
